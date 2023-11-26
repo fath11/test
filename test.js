@@ -491,19 +491,19 @@ class motionSquared {
 window.tempExt = {
   Extension: motionSquared,
   info: {
-      name: motionsquared.Name,
-      description: motionsquared.Description,
+      name: 'motionsquared.Name',
+      description: 'motionsquared.Description',
       extensionId: 'motionsquared',
       // iconURL: 'cover.svg',
       // insetIconURL: 'cover.svg',
       collaborator: 'Fath11@Gandi'
   },
-  l10m: {
-      'zh': {
+  l10n: {
+      'zh-cn': {
           'motionsquared.Name':'控制台',
           'motionsquared.Description':'用于控制和操作浏览器内置的JavaScript控制台'
       },
-      'en': {
+      en: {
           'motionsquared.Name':'Motion squared',
           'motionsquared.Description': "More blocks for controlling sprite's motion!"
       }
