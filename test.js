@@ -496,21 +496,21 @@ class motionSquared {
   window.tempExt = {
     Extension: motionSquared,
     info: {
-        name: 'Consoles.Name',
-        description: 'Consoles.Description',
-        extensionID: 'Consoles',
+        name: 'motionsquared.Name',
+        description: 'motionsquared.Description',
+        extensionID: 'motionsquared',
         // iconURL: 'cover.svg',
         // insetIconURL: 'cover.svg',
         collaborator: 'sipc.ink@Gandi'
     },
     l10m: {
         'zh': {
-            'Consoles.Name':'控制台',
-            'Consoles.Description':'用于控制和操作浏览器内置的JavaScript控制台'
+            'motionsquared.Name':'控制台',
+            'motionsquared.Description':'用于控制和操作浏览器内置的JavaScript控制台'
         },
         'en': {
-            'Consoles.Name':'Consoles',
-            'Consoles.Description':'Control and manipulation browser for built-in JavaScript console'
+            'motionsquared.Name':'motionsquared',
+            'motionsquared.Description':'Control and manipulation browser for built-in JavaScript console'
         }
     },
 }
