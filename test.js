@@ -33,6 +33,9 @@ function rotatePoint(px, py, cx, cy, theta) {
 
 
 class motionSquared {
+  constructor(runtime){
+    this.runtime = runtime
+  }
     getInfo() {
       return {
         id: 'motionsquared',
@@ -460,7 +463,7 @@ class motionSquared {
 
     _getTargets() {
       const spriteNames = [];
-      const targets = Scratch.vm.runtime.targets;
+      const targets = runtime.targets;
       for (let index = 1; index < targets.length; index++) {
           const target = targets[index];
           if (target.isOriginal) {
@@ -489,4 +492,26 @@ class motionSquared {
   }
   
   Scratch.extensions.register(new motionSquared());
+  
+  const tempExt = {
+    Extension: motionSquared,
+    info: {
+        name: 'Consoles.Name',
+        description: 'Consoles.Description',
+        extensionID: 'Consoles',
+        // iconURL: 'cover.svg',
+        // insetIconURL: 'cover.svg',
+        collaborator: 'sipc.ink@Gandi'
+    },
+    l10m: {
+        'zh': {
+            'Consoles.Name':'控制台',
+            'Consoles.Description':'用于控制和操作浏览器内置的JavaScript控制台'
+        },
+        'en': {
+            'Consoles.Name':'Consoles',
+            'Consoles.Description':'Control and manipulation browser for built-in JavaScript console'
+        }
+    },
+}
 })(Scratch);
