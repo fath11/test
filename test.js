@@ -493,7 +493,7 @@ window.tempExt = {
   info: {
       name: 'motionsquared.Name',
       description: 'motionsquared.Description',
-      extensionID: 'motionsquared',
+      extensionId: 'motionsquared',
       // iconURL: 'cover.svg',
       // insetIconURL: 'cover.svg',
       collaborator: 'sipc.ink@Gandi'
