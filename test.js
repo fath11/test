@@ -463,7 +463,7 @@ class motionSquared {
 
     _getTargets() {
       const spriteNames = [];
-      const targets = runtime.targets;
+      const targets = this.runtime.targets;
       for (let index = 1; index < targets.length; index++) {
           const target = targets[index];
           if (target.isOriginal) {
@@ -492,8 +492,8 @@ class motionSquared {
   }
   
   Scratch.extensions.register(new motionSquared());
-  
-  const tempExt = {
+
+  window.tempExt = {
     Extension: motionSquared,
     info: {
         name: 'Consoles.Name',
