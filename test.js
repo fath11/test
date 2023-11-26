@@ -1,520 +1,492 @@
-// Name: Scope Variables
-// ID: scopeVar
-// Description: Manage your data inside your stack (or substack).
-// 作者 By: SimonShiki <https://scratch.mit.edu/users/SinanGentoo/>
-// 原作者Original: Skyhigh173
-// 搬运：Arkos
+(function (Scratch) {
+  "use strict";
 
-import cover from './assets/cover.png'
-import icon from './assets/icon.png'
+const Icon = "data:image/png;base64,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";
 
-const extensionId = "shikiScopeVar";
-
-import Cast from "../utils/cast.js";
-
-class ScopeVar {
-  constructor(runtime) {
-    this.runtime = runtime;
-
-    this.initFormatMessage({
-      "zh-cn": {
-        extensionName: "局部变量",
-        description: "更优雅、便捷的变量使用方式",
-
-        urlButton: "📖 扩展教程",
-        "tip.compiler": "⚠️ 编译模式下，原版分支积木/自制积木的域会失效",
-        "url": "https://learn.ccw.site/article/49da22df-a178-4cce-86c7-366df75f7d75",
-
-        "block.scope": "局部域",
-        "block.create": "声明局部变量 [VAR]，并设为 [VALUE]",
-        "block.set": "局部变量 [VAR] 设为 [VALUE]",
-        "block.change": "局部变量 [VAR] 增加 [INCREMENT]",
-        "block.get": "局部变量 [VAR]",
-
-        // ↓遍历积木，灵感来自 YUEN
-        "block.repeatWithVar": "以 [VAR] 为计数器，从 [N1] 到 [N2]",
-        "block.forEachWithList": "遍历列表 [LIST] 每项，编号[I]内容[VAR]",
-      },
-
-      en: {
-        extensionName: "Scope Variables",
-        description: "Manage your data inside.",
-
-        urlButton: "📖 Tutorial",
-        "tip.compiler": "⚠️ In compile mode, the scope of branch blocks/custom blocks will be invalid.",
-        "url": "https://learn.ccw.site/article/49da22df-a178-4cce-86c7-366df75f7d75",
-
-        "block.scope": "scope",
-        "block.create": "create scoped [VAR] with [VALUE]",
-        "block.set": "set scoped [VAR] to [VALUE]",
-        "block.change": "change scoped [VAR] by [INCREMENT]",
-        "block.get": "get scoped [VAR]",
-
-        "block.repeatWithVar": "counter [VAR] from [N1] to [N2]",
-        "block.forEachWithList": "for each [I], [VAR] of [LIST]",
-      },
-    });
-  }
-
-  /** by YUEN，在 l10n 每条信息前加上 extensionId. */ 
-  initFormatMessage(l10n) {
-    const languages = ["zh-cn", "en"];
-    for (const [language, messages] of Object.entries(l10n)) {
-      l10n[language] = {};
-      if (!languages.includes(language)) return;
-      Object.entries(messages).forEach(([id, message]) => {
-        l10n[language][`${extensionId}.${id}`] = message;
-      });
-    }
-    const _formatMessage = this.runtime.getFormatMessage(l10n);
-    this.formatMessage = (id) => {
-      id = `${extensionId}.${id}`;
-      return _formatMessage({
-        id,
-        default: id,
-        description: id,
-      });
-    };
-  }
-
-  getInfo() {
-    return {
-      id: extensionId,
-      name: this.formatMessage("extensionName"),
-      color1: "#9999FF",
-      // blockIconURI: icon,
-      menuIconURI: icon,
-      blocks: [
-        {
-          blockType: "button",
-          text: this.formatMessage("urlButton"),
-          onClick: () => {
-            const a = document.createElement("a");
-            a.href = this.formatMessage("url");
-            a.rel = "noopener noreferrer";
-            a.target = "_blank";
-            a.click();
-          },
-        },
-        '---',
-        // '---' + this.formatMessage("tip.compiler"),
-        {
-          opcode: "scope",
-          blockType: "conditional",
-          branchCount: 1,
-          text: [this.formatMessage("block.scope")],
-        },
-        "---",
-        {
-          opcode: "create",
-          blockType: "command",
-          text: this.formatMessage("block.create"),
-          arguments: {
-            VAR: {
-              type: "string",
-              defaultValue: "i",
-            },
-            VALUE: {
-              type: "string",
-              defaultValue: "0",
-            },
-          },
-        },
-        {
-          opcode: "set",
-          blockType: "command",
-          text: this.formatMessage("block.set"),
-          arguments: {
-            VAR: {
-              type: "string",
-              defaultValue: "i",
-            },
-            VALUE: {
-              type: "string",
-              defaultValue: "0",
-            },
-          },
-        },
-        {
-          opcode: "change",
-          blockType: "command",
-          text: this.formatMessage("block.change"),
-          arguments: {
-            VAR: {
-              type: "string",
-              defaultValue: "i",
-            },
-            INCREMENT: {
-              type: "number",
-              defaultValue: "1",
-            },
-          },
-        },
-        {
-          opcode: "get",
-          blockType: "reporter",
-          text: this.formatMessage("block.get"),
-          arguments: {
-            VAR: {
-              type: "string",
-              defaultValue: "i",
-            },
-          },
-        },
-        '---',
-        {
-          opcode: 'repeatWithVar',
-          blockType: 'conditional',
-          text: [this.formatMessage('block.repeatWithVar')],
-          branchCount: 1,
-          arguments: {
-            N1: {
-              type: "number",
-              defaultValue: 1,
-            },
-            N2: {
-              type: "number",
-              defaultValue: 10,
-            },
-            VAR: {
-              type: "string",
-              defaultValue: 'i',
-            },
-          },
-        },
-        {
-          opcode: 'forEachWithList',
-          blockType: 'conditional',
-          text: [this.formatMessage('block.forEachWithList')],
-          branchCount: 1,
-          arguments: {
-            LIST: {
-              type: "string",
-              menu: 'LIST_MENU',
-            },
-            VAR: {
-              type: "string",
-              defaultValue: 'item',
-            },
-            I: {
-              type: "string",
-              defaultValue: 'i',
-            },
-          },
-        },
-        // {
-        //   opcode: 'glowScript',
-        //   BlockType: 'command',
-        //   text: '高亮积木 [ID] 持续时间 [TIME] s',
-        //   arguments: {
-        //     ID: {
-        //       type: 'string',
-        //       defaultValue: '',
-        //     },
-        //     TIME: {
-        //       type: 'number',
-        //       defaultValue: 3,
-        //     },
-        //   },
-        // },
-      ],
-      menus: {
-        LIST_MENU: {
-          items: '__listMenu',
-          acceptReporters: true,
-        },
-      }
-    };
-  }
-
-  // glowScript({ ID, TIME }) {
-  //   this.runtime.glowBlock(ID, true);
-  //   setTimeout(() => {
-  //     this.runtime.glowBlock(ID, false);
-  //   }, TIME * 1000);
-  // }
-
-  /**
-   * 获取列表的菜单
-   */
-  __listMenu() {
-    const menus = [];
-    // 放入全局列表
-    let variables = this.runtime._stageTarget.variables;
-    Object.keys(variables).forEach((variable) => {
-      if (variables[variable].type === 'list') {
-        menus.push({
-          text: variables[variable].name,
-          value: variables[variable].id,
-        });
-      }
-    });
-    // 放入私有列表
-    if (this.runtime._editingTarget&&
-      this.runtime._editingTarget !== this.runtime._stageTarget) {
-      variables = this.runtime._editingTarget.variables;
-      Object.keys(variables).forEach((variable) => {
-        if (variables[variable].type) {
-          menus.push({
-            text: `[PRIVATE] ${variables[variable].name}`,
-            value: variables[variable].id,
-          });
-        }
-      });
-    }
-    if (menus.length === 0) {
-      menus.push({
-        text: '-',
-        value: 'empty',
-      });
-    }
-    return menus;
-  }
-
-  /**
-   * 从内往外读取每个作用域，查找有name的作用域的vars（如果没找到，则初始化最内层）
-   * @param {string} name 要查找的局部变量名
-   * @param {*} thread 
-   * @returns {*} vars
-   */
-  _getVarObjByName(name, thread) {
-    const { stackFrames, stack } = thread;
-
-    // current block is top-level, read it from thread
-    if (stackFrames.length < 2) {
-      // initialize in thread
-      if (typeof thread.vars !== "object") {
-        thread.vars = {};
-      }
-      return thread.vars;
-    }
-    
-    // look up the i from outer scope up
-    for (let i = stackFrames.length - 2; i >= 0; i--) {
-      const { executionContext } = stackFrames[i];
-
-      if (
-        executionContext !== null &&
-        typeof executionContext.vars === "object" &&
-        name in executionContext.vars
-      ) {
-        return executionContext.vars;;
-      } else {
-        // 如果该层是自制积木或返回值就退出（自制积木不应该再继续访问外部的局部变量）
-        const block = thread.target.blocks.getBlock(stack[i]);
-        if ((block && block.opcode === 'procedures_call') ||
-          stackFrames[i].op.opcode === 'procedures_call_with_return') {
-          return this._getOrInitScopeVars(thread);
-        }
-      }
-    }
-
-    // return if it exists in top-level
-    if (typeof thread.vars === "object" && name in thread.vars) {
-      return thread.vars;
-    }
-
-    // initialize in outer scope
-    return this._getOrInitScopeVars(thread);
-  }
-
-  /**
-   * 返回某层级的vars
-   * @param {*} thread 
-   * @param {number} back 往前层数
-   * @returns {*} vars
-   */
-  _getOrInitScopeVars(thread, back = 1) {
-    const stackFrames = thread.stackFrames;
-
-    let vars;
-    if (stackFrames.length - 1 < back) {
-      if (typeof thread.vars !== "object") {
-        thread.vars = {};
-      }
-      vars = thread.vars;
-    } else {
-      const outerStackFrame = stackFrames[stackFrames.length - 1 - back];
-      if (!outerStackFrame.executionContext) {
-        outerStackFrame.executionContext = {};
-      }
-      const { executionContext } = outerStackFrame;
-      if (typeof executionContext.vars !== "object") {
-        executionContext.vars = {};
-      }
-      vars =  executionContext.vars;
-    }
-    return vars;
-  }
-
-  /**
-   * 局部域branch积木
-   */
-  scope(args, util) {
-    util.startBranch(1, false);
-  }
-
-  /**
-   * 创建（声明）局部变量
-   * @param {string} VAR 局部变量名
-   * @param {*} VALUE 设为的值
-   */
-  create({VAR, VALUE}, util) {
-    const varName = Cast.toString(VAR);
-    const vars = this._getOrInitScopeVars(util.thread);
-    vars[varName] = VALUE;
-  }
-
-  /**
-   * 设置局部变量
-   * @param {string} VAR 局部变量名
-   * @param {*} VALUE 设为的值
-   */
-  set({VAR, VALUE}, util) {
-    const varName = Cast.toString(VAR);
-
-    const vars = this._getVarObjByName(varName, util.thread);
-
-    vars[varName] = VALUE;
-  }
-
-  /**
-   * 增加局部变量
-   * @param {string} VAR 局部变量名
-   * @param {number} INCREMENT 值
-   */
-  change({VAR, INCREMENT}, util) {
-    const varName = Cast.toString(VAR);
-    const vars = this._getVarObjByName(varName, util.thread);
-    const castedValue = Cast.toNumber(vars[varName]);
-    const dValue = Cast.toNumber(INCREMENT);
-    vars[varName] = castedValue + dValue;
-  }
-
-  /**
-   * 读取局部变量
-   * @param {string} VAR 局部变量名
-   * @returns {*} 结果
-   */
-  get({VAR}, util) {
-    const varName = Cast.toString(VAR);
-    const vars = this._getVarObjByName(varName, util.thread);
-    return vars[varName] ?? "";
-  }
-
-  /**
-   * 从 N1 到 N2 ,将计数存在 VAR
-   * @param {N1} 开始值
-   * @param {N2} 结束值
-   * @param {VAR} 局部变量名  
-   */
-  repeatWithVar({N1, N2, VAR}, util) {
-    const stackFrame = util.stackFrame;
-
-    if (typeof stackFrame.loopCounter === 'undefined') {
-      // N1，N2存入stackFrame，防止后面发生变化
-      stackFrame.n1 = Math.round(Cast.toNumber(N1));
-      stackFrame.n2 = Math.round(Cast.toNumber(N2));
-      stackFrame.step = Math.sign (stackFrame.n2 - stackFrame.n1);
-      if(stackFrame.step === 0) return;
-      stackFrame.loopCounter = stackFrame.n1;
-    } else {
-      // 每次增加步长
-      stackFrame.loopCounter += stackFrame.step;
-    }
-    const {n1, n2, step, loopCounter} = stackFrame;
-    
-    const varName = Cast.toString(VAR);
-    const vars = this._getOrInitScopeVars(util.thread, 0);
-    vars[varName] = loopCounter;
-
-    if (step > 0 ? loopCounter > n2: loopCounter < n2) {
-      return;
-    }
-    util.startBranch(1, true);
-  }
-
-  /**
-   * 遍历原版列表LIST的每一项，存在局部变量VAR
-   * @param {LIST} 次数 
-   * @param {VAR} 局部变量名，存列表项 
-   * @param {I} 局部变量名，存列表索引
-   */
-  forEachWithList({LIST, VAR, I}, util) {
-
-    // 还没有创建列表
-    if (LIST === 'empty') return;
-    // 根据Id或列表名查找，没找到则返回
-    let list = util.target.lookupVariableById(LIST);
-    if (
-      (!list &&
-        (list = util.target.lookupVariableByNameAndType(
-          LIST,
-          'list'
-        )),
-      !list)
-    )
-      return;
-
-    const times = list.value.length;
-    if (times < 1) return;
-    if (typeof util.stackFrame.loopCounter === 'undefined') {
-      util.stackFrame.loopCounter = times;
-    }
-
-    util.stackFrame.loopCounter--;
-    
-    const varName = Cast.toString(VAR);
-    const idxName = Cast.toString(I);
-    const vars = this._getOrInitScopeVars(util.thread, 0);
-    const idx = times - util.stackFrame.loopCounter -1;
-    if (idx < 0 && idx > list.value.length - 1) return;
-    vars[idxName] = idx + 1;
-    vars[varName] = list.value[idx] ?? '';
-
-    if (util.stackFrame.loopCounter >= 0) {
-      util.startBranch(1, true);
-    }
-  }
+function find_distance_to(x1, y1, x2, y2) {
+  return Math.hypot((x2 - x1), (y2 - y1)).toFixed(2)
 }
 
-const extension = {
-  Extension: ScopeVar,
-  info: {
-    name: `${extensionId}.extensionName`,
-    description: `${extensionId}.description`,
-    docsURI: "https://extensions.turbowarp.org/SimonShiki/scopeVar",
-    extensionId,
-    iconURL: cover,
-    insetIconURL: icon,
-    featured: true,
-    disabled: false,
-    // collaborator: 'editor @ ',
-    collaboratorList: [
-      {
-        collaborator: "SimonShiki @ ClipCC",
-        collaboratorURL: "https://github.com/SimonShiki",
-      },
-      {
-        collaborator: "Skyhigh173",
-        collaboratorURL: "https://github.com/Skyhigh173",
-      },
-      {
-        collaborator: "Arkos(搬运者) @ CCW",
-        collaboratorURL:
-          "https://www.ccw.site/student/6107c5323e593a0c25f850f8",
-      },
-    ],
-  },
-  l10n: {
-    "zh-cn": {
-      [`${extensionId}.extensionName`]: "局部变量",
-      [`${extensionId}.description`]: "✨ 更优雅、便捷的变量使用方式",
-    },
-    en: {
-      [`${extensionId}.extensionName`]: "Scope Variables",
-      [`${extensionId}.description`]: "✨ A more elegant and convenient way to use variables.",
-    },
-  },
-};
-window.tempExt = extension;
+function find_direction_to(x1, y1, x2, y2) {
+  let dx = x2 - x1;
+  let dy = y2 - y1;
+  let theta = Math.atan2(dy, dx);
+  let direction = 90 - theta * (180 / Math.PI);
+  return direction.toFixed(2);
+}
+
+function rotatePoint(px, py, cx, cy, theta) {
+  // Translate point back to origin
+  px -= cx;
+  py -= cy;
+
+  // Rotate point
+  var newX = px * Math.cos(theta) - py * Math.sin(theta);
+  var newY = px * Math.sin(theta) + py * Math.cos(theta);
+
+  // Translate point back
+  newX += cx;
+  newY += cy;
+
+  return [newX, newY];
+}
+
+
+class motionSquared {
+    getInfo() {
+      return {
+        id: 'motionsquared',
+        name: 'Motion^2',
+        color1: '#4c97ff',
+        color2: '#2a528a',
+        color3: '#4280d7',
+        blockIconURI: Icon,
+        blocks: [
+          {
+            opcode: 'rotate_around',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Rotate around x: [X] y: [Y] by [STEPS] steps [ROTATE_DIRECTION]',
+            arguments: {
+              X: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              STEPS: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: '10'
+              },
+              ROTATE_DIRECTION: {
+                type: Scratch.ArgumentType.NUMBER,
+                menu: 'ROTATE_DIRECTION',
+              },
+            },
+          },
+          {
+            opcode: 'rotate_around_sprite',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Rotate around [SPRITE] by [STEPS] steps [ROTATE_DIRECTION]',
+            arguments: {
+              SPRITE: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'sprites',
+              },
+              STEPS: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: '10'
+              },
+              ROTATE_DIRECTION: {
+                type: Scratch.ArgumentType.NUMBER,
+                menu: 'ROTATE_DIRECTION',
+              },
+            },
+          },
+          "---",
+          {
+            opcode: 'rotate_in_shapes',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Rotate in [SHAPE] formation around x: [X] y: [Y] [ROTATE_DIRECTION]',
+            arguments: {
+              X: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              ROTATE_DIRECTION: {
+                type: Scratch.ArgumentType.NUMBER,
+                menu: 'ROTATE_DIRECTION',
+              },
+              SHAPE: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'SHAPES',
+              },
+            },
+          },
+          {
+            opcode: 'rotate_around_sprite_in_shapes',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Rotate around [SPRITE] in [SHAPE] formation [ROTATE_DIRECTION]',
+            arguments: {
+              SPRITE: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'sprites',
+              },
+              ROTATE_DIRECTION: {
+                type: Scratch.ArgumentType.NUMBER,
+                menu: 'ROTATE_DIRECTION',
+              },
+              SHAPE: {
+                type: Scratch.ArgumentType.NUMBER,
+                menu: 'SHAPES',
+              },
+            },
+          },
+          "---",
+          {
+            opcode: 'point_towards_pos',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Point towards x: [X] y: [Y]',
+            arguments: {
+              X: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+            },
+          },
+          {
+            opcode: 'direction_to',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'Direction to x: [X] y: [Y]',
+            arguments: {
+              X: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+            },
+          },
+          {
+            opcode: 'direction_from_to',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'Direction from x: [X1] y: [Y1] to x: [X2] y: [Y2]',
+            arguments: {
+              X1: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y1: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              X2: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '100'
+              },
+              Y2: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '100'
+              },
+            },
+          },
+          {
+            opcode: 'direction_to_sprite',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'Direction to [SPRITE]',
+            arguments: {
+              SPRITE: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'sprites',
+              },
+            },
+          }, 
+          "---",
+          {
+            opcode: 'move_towards_or_away',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Move [STEPS] steps [DIRECTION] x: [X] y: [Y]',
+            arguments: {
+              STEPS: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '10'
+              },
+              DIRECTION: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'towards_away',
+              },
+              X: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+            },
+          },
+          {
+            opcode: 'move_towards_or_away_from_sprite',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'Move [STEPS] steps [DIRECTION] [SPRITE]',
+            arguments: {
+              STEPS: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '10'
+              },
+              DIRECTION: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'towards_away',
+              },
+              SPRITE: {
+                type: Scratch.ArgumentType.STRING,
+                menu: 'sprites',
+              },
+            },
+          },
+          "---",
+          {
+            opcode: 'distance_to',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'Distance to x: [X] y: [Y]',
+            arguments: {
+              X: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+            },
+          },
+          {
+            opcode: 'distance_from_to',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'Distance from x: [X1] y: [Y1] to x: [X2] y: [Y2]',
+            arguments: {
+              X1: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              Y1: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '0'
+              },
+              X2: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '100'
+              },
+              Y2: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: '100'
+              },
+            },
+          },
+        ],
+        menus: {
+          sprites: {
+            acceptReporters: true,
+            items: '_getTargets'
+          },
+          ROTATE_DIRECTION: {
+            acceptReporters: true,
+            items: [
+              {
+                text: 'Clockwise',
+                value: '-1'
+              },
+              {
+                text: 'Counter-clockwise',
+                value: '1'
+              }
+            ]
+          },
+          towards_away: {
+            acceptReporters: true,
+            items: [
+              {
+                text: 'towards',
+                value: '1'
+              },
+              {
+                text: 'away',
+                value: '-1'
+              }
+            ]
+          },
+          SHAPES: {
+            acceptReporters: true,
+            items: [
+              {
+                text: 'Triangle',
+                value: '2.09'
+              },
+              {
+                text: 'Square',
+                value: '1.57'
+              },
+              {
+                text: 'Pentagon',
+                value: '1.26'
+              },
+              {
+                text: 'Hexagon',
+                value: '1.05'
+              },
+              {
+                text: 'Heptagon',
+                value: '0.897'
+              },
+              {
+                text: 'Octagon',
+                value: '0.785'
+              },
+            ]
+          }
+        }
+      };
+    }
+  
+    rotate_around({X, Y, STEPS, ROTATE_DIRECTION}, util) {
+      //Convert the angle to radians so sprite will rotate in circle
+      let radians = STEPS * (Math.PI / 180)
+      //Set the rotation direction to either CLOCKWISE: -1 or COUNTER-CLOCKWISE: 1
+      radians = radians * ROTATE_DIRECTION
+
+      // Use the rotatePoint(x1, y1, x2, y2, theta) function
+      let newPos = rotatePoint(util.target.x, util.target.y, X, Y, radians);
+
+      //Set the sprite's position to the new positions
+      util.target.setXY(newPos[0], newPos[1]);
+    }
+
+    rotate_around_sprite({SPRITE, STEPS, ROTATE_DIRECTION}, util) {
+      // get target sprite's target
+      SPRITE = Scratch.vm.runtime.getSpriteTargetByName(SPRITE)
+
+      // Get target sprite's X and Y
+      let X = SPRITE.x
+      let Y = SPRITE.y
+
+      //Use the rotate_around block
+      this.rotate_around({X, Y, STEPS, ROTATE_DIRECTION}, util)
+    }
+
+    rotate_in_shapes({X, Y, ROTATE_DIRECTION, SHAPE}, util) {
+      // Set the rotation direction
+      let radians = SHAPE * ROTATE_DIRECTION
+
+      // Use the rotatePoint(x1, y1, x2, y2, theta) function
+      // This one DOESN'T use rotate_around() block because rotate around have a radians for circles
+      let newPos = rotatePoint(util.target.x, util.target.y, X, Y, radians);
+
+      util.target.setXY(newPos[0], newPos[1]);
+    }
+
+    rotate_around_sprite_in_shapes({SPRITE, ROTATE_DIRECTION, SHAPE}, util) {
+      SPRITE = Scratch.vm.runtime.getSpriteTargetByName(SPRITE)
+
+      let X = SPRITE.x
+      let Y = SPRITE.y
+      
+      // use the rotate_in_shapes() block
+      this.rotate_in_shapes({X, Y, ROTATE_DIRECTION, SHAPE}, util)
+    }
+
+    point_towards_pos({X, Y}, util) {
+      //Set the sprite's direction using the find_direction_to() function
+      util.target.setDirection(find_direction_to(X, Y, util.target.x, util.target.y));
+    }
+
+    direction_to({X, Y}, util) {
+      return find_direction_to(X, Y, util.target.x, util.target.y)
+    }
+
+    direction_from_to({X1, Y1, X2, Y2}) {
+      return find_direction_to(X1, Y1, X2, Y2)
+    }
+
+    direction_to_sprite({SPRITE}, util) {
+      SPRITE = Scratch.vm.runtime.getSpriteTargetByName(SPRITE)
+      let X = SPRITE.x
+      let Y = SPRITE.y
+
+      return find_direction_to(X, Y, util.target.x, util.target.y)
+    }
+
+    move_towards_or_away({STEPS, DIRECTION, X, Y}, util) {
+      // Calculate the difference between the target and destination points
+      let dx = X - util.target.x;
+      let dy = Y - util.target.y;
+
+      // Calculate the distance between the two points
+      let distance = Math.sqrt(dx * dx + dy * dy);
+
+      // Normalize the difference
+      dx /= distance;
+      dy /= distance;
+
+      // Move the target point towards or away from the destination point by the specified amount
+      let x = util.target.x + DIRECTION * dx * STEPS;
+      let y = util.target.y + DIRECTION * dy * STEPS;
+      util.target.setXY(x, y)
+    }
+
+    move_towards_or_away_from_sprite({STEPS, DIRECTION, SPRITE}, util) {
+      if (SPRITE != util.target.getName()) {
+        SPRITE = Scratch.vm.runtime.getSpriteTargetByName(SPRITE)
+        let X = SPRITE.x
+        let Y = SPRITE.y
+    
+        // Calculate the difference between the target and destination points
+        let dx = X - util.target.x;
+        let dy = Y - util.target.y;
+    
+        // Calculate the distance between the two points
+        let distance = Math.sqrt(dx * dx + dy * dy);
+    
+        // Normalize the difference
+        dx /= distance;
+        dy /= distance;
+    
+        // Move the target point towards or away from the destination point by the specified amount
+        let x = util.target.x + DIRECTION * dx * STEPS;
+        let y = util.target.y + DIRECTION * dy * STEPS;
+        util.target.setXY(x, y)
+      } else {
+        console.error("Sprite cannot move towards/away fron itself");
+      }
+    }
+
+    distance_to({X, Y}, util) {
+      return find_distance_to(X, Y, util.target.x, util.target.y)
+    }
+
+    distance_from_to({X1, Y1, X2, Y2}) {
+      return find_distance_to(X1, Y1, X2, Y2)
+    }
+
+    _getTargets() {
+      const spriteNames = [];
+      const targets = Scratch.vm.runtime.targets;
+      for (let index = 1; index < targets.length; index++) {
+          const target = targets[index];
+          if (target.isOriginal) {
+              const targetName = target.getName();
+              spriteNames.push({
+                  text: targetName,
+                  value: targetName,
+              });
+          }
+      }
+      // Remove the first element
+      const result = spriteNames;
+      
+      // Check if the array is empty
+      if (result.length === 0) {
+          // Add a placeholder
+          result.push({
+              text: 'Make another sprite',
+              value: console.error("There is no other sprites"),
+          });
+      }
+      
+      return result;
+  }
+  
+  }
+  
+  Scratch.extensions.register(new motionSquared());
+})(Scratch);
