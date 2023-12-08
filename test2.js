@@ -48,13 +48,20 @@ class variablePlus {
         menus: {
           CUSTOM_dropdown: {
             acceptReporters: true,
-            items: ['New item', 'example item 1']
+            items: [{text: 'New item', value: this.getNewItem(this)}, 'example item 1']
           }
         },
       };
     }
     return(args) {
       return args.CUSTOM_dropdown
+    }
+
+    getNewItem() {
+      let ItemName = prompt("Item name")
+      let ItemValue = prompt("Item value")
+
+      console.log(ItemName, ItemValue)
     }
   }
   
