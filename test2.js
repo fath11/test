@@ -1,7 +1,23 @@
 const blocks = [{
   blockType: "button",
   text: "New dropdown",
-  onClick: () => { this.newDropdown() },
+  onClick: () => { 
+      newDropdowns.push(
+        {
+          opcode: "dropdown" + Math.random(),
+          blockType: "reporter",
+          text: "[CUSTOM_dropdown]",
+          arguments: {
+            CUSTOM_dropdown: {
+                  type: "string",
+                  menu: "CUSTOM_dropdown",
+              },
+          },
+        },
+      )
+      console.log(newDropdowns)
+      runtime.requestToolboxExtensionsUpdate()
+   },
 },
 {
   opcode: "dropdown1",
@@ -31,23 +47,6 @@ class variablePlus {
             items: ['New item', 'example item 1']
           }
         },
-        newDropdown() {
-          newDropdowns.push(
-            {
-              opcode: "dropdown" + Math.random(),
-              blockType: "reporter",
-              text: "[CUSTOM_dropdown]",
-              arguments: {
-                CUSTOM_dropdown: {
-                      type: "string",
-                      menu: "CUSTOM_dropdown",
-                  },
-              },
-            },
-          )
-          console.log(newDropdowns)
-          runtime.requestToolboxExtensionsUpdate()
-        }
       };
     }
   }
