@@ -1,35 +1,4 @@
-const blocks = [{
-  blockType: "button",
-  text: "New dropdown",
-  onClick: () => { 
-      newDropdowns.push(
-        {
-          opcode: "dropdown" + Math.random(),
-          blockType: "reporter",
-          text: "[CUSTOM_dropdown]",
-          arguments: {
-            CUSTOM_dropdown: {
-                  type: "string",
-                  menu: "CUSTOM_dropdown",
-              },
-          },
-        },
-      )
-      console.log(newDropdowns)
-      this.runtime.requestToolboxExtensionsUpdate()
-   },
-},
-{
-  opcode: "dropdown1",
-  blockType: "reporter",
-  text: "[CUSTOM_dropdown]",
-  arguments: {
-    CUSTOM_dropdown: {
-          type: "string",
-          menu: "CUSTOM_dropdown",
-      },
-  },
-},]
+const blocks = []
 const newDropdowns = []
 
 class variablePlus {
@@ -40,7 +9,40 @@ class variablePlus {
       return {
         id: 'variablePlus',
         name: 'VariablePlus',
-        blocks: [...blocks, ...newDropdowns],
+        blocks: [
+          {
+            blockType: "button",
+            text: "New dropdown",
+            onClick: () => { 
+                newDropdowns.push(
+                  {
+                    opcode: "dropdown" + Math.random(),
+                    blockType: "reporter",
+                    text: "[CUSTOM_dropdown]",
+                    arguments: {
+                      CUSTOM_dropdown: {
+                            type: "string",
+                            menu: "CUSTOM_dropdown",
+                        },
+                    },
+                  },
+                )
+                console.log(newDropdowns)
+                this.runtime.requestToolboxExtensionsUpdate()
+             },
+          },
+          {
+            opcode: "dropdown1",
+            blockType: "reporter",
+            text: "[CUSTOM_dropdown]",
+            arguments: {
+              CUSTOM_dropdown: {
+                    type: "string",
+                    menu: "CUSTOM_dropdown",
+                },
+            },
+          }, 
+          ...newDropdowns],
         menus: {
           CUSTOM_dropdown: {
             acceptReporters: true,
