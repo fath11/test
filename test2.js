@@ -1,7 +1,7 @@
 const blocks = [{
   blockType: "button",
   text: "New dropdown",
-  onClick: () => { newDropdown() },
+  onClick: () => { this.newDropdown() },
 },
 {
   opcode: "dropdown1",
