@@ -19,24 +19,6 @@
 
 const newDropdowns = []
 
-  function newDropdown() {
-    newDropdowns.push(
-      {
-        opcode: "dropdown" + Math.random(),
-        blockType: "reporter",
-        text: "[CUSTOM_dropdown]",
-        arguments: {
-          CUSTOM_dropdown: {
-                type: "string",
-                menu: "CUSTOM_dropdown",
-            },
-        },
-      },
-    )
-    console.log(newDropdowns)
-    runtime.requestToolboxExtensionsUpdate()
-  }
-
   class variablePlus {
     constructor(runtime) {
       this.runtime = runtime
@@ -51,6 +33,23 @@ const newDropdowns = []
               acceptReporters: true,
               items: ['New item', 'example item 1']
             }
+          },
+          newDropdown() {
+            newDropdowns.push(
+              {
+                opcode: "dropdown" + Math.random(),
+                blockType: "reporter",
+                text: "[CUSTOM_dropdown]",
+                arguments: {
+                  CUSTOM_dropdown: {
+                        type: "string",
+                        menu: "CUSTOM_dropdown",
+                    },
+                },
+              },
+            )
+            console.log(newDropdowns)
+            runtime.requestToolboxExtensionsUpdate()
           }
         };
       }
