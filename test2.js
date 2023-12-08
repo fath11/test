@@ -1,25 +1,14 @@
-const blocks = [{
-  blockType: "button",
-  text: "New dropdown",
-  onClick: () => { newDropdown() },
-},
-{
-  opcode: "dropdown1",
-  blockType: "reporter",
-  text: "[CUSTOM_dropdown]",
-  arguments: {
-    CUSTOM_dropdown: {
-          type: "string",
-          menu: "CUSTOM_dropdown",
-      },
-  },
-},]
+class variablePlus {
+  constructor(runtime) {
+    this.runtime = runtime
 
-const newDropdowns = []
-function newDropdown() {
-  newDropdowns.push(
+    const blocks = [{
+      blockType: "button",
+      text: "New dropdown",
+      onClick: () => { this.newDropdown() },
+    },
     {
-      opcode: "dropdown" + Math.random(),
+      opcode: "dropdown1",
       blockType: "reporter",
       text: "[CUSTOM_dropdown]",
       arguments: {
@@ -28,15 +17,9 @@ function newDropdown() {
               menu: "CUSTOM_dropdown",
           },
       },
-    },
-  )
-  console.log(newDropdowns)
-  runtime.requestToolboxExtensionsUpdate()
-}
-
-class variablePlus {
-  constructor(runtime) {
-    this.runtime = runtime
+    },]
+    
+    const newDropdowns = []
   }
     getInfo() {
       return {
@@ -48,6 +31,23 @@ class variablePlus {
             acceptReporters: true,
             items: ['New item', 'example item 1']
           }
+        },
+        newDropdown() {
+          newDropdowns.push(
+            {
+              opcode: "dropdown" + Math.random(),
+              blockType: "reporter",
+              text: "[CUSTOM_dropdown]",
+              arguments: {
+                CUSTOM_dropdown: {
+                      type: "string",
+                      menu: "CUSTOM_dropdown",
+                  },
+              },
+            },
+          )
+          console.log(newDropdowns)
+          runtime.requestToolboxExtensionsUpdate()
         }
       };
     }
