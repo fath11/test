@@ -1,3 +1,6 @@
+const blocks = []
+const newDropdowns = []
+
 class variablePlus {
   constructor(runtime) {
     this.runtime = runtime
@@ -19,8 +22,6 @@ class variablePlus {
         },
     },
   },]
-  
-  newDropdowns = []
 
     getInfo() {
       return {
