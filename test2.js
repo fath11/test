@@ -42,6 +42,7 @@ class variablePlus {
                     menu: "CUSTOM_dropdown",
                 },
             },
+            func: 'return',
           }, 
           ...newDropdowns],
         menus: {
