@@ -40,7 +40,40 @@ class variablePlus {
       return {
         id: 'variablePlus',
         name: 'VariablePlus',
-        blocks: [...blocks, ...newDropdowns],
+        blocks: [
+          {
+            blockType: "button",
+            text: "New dropdown",
+            onClick: () => { 
+              newDropdowns.push(
+                {
+                  opcode: "dropdown" + Math.random(),
+                  blockType: "reporter",
+                  text: "[CUSTOM_dropdown]",
+                  arguments: {
+                    CUSTOM_dropdown: {
+                          type: "string",
+                          menu: "CUSTOM_dropdown",
+                      },
+                  },
+                },
+              )
+              console.log(newDropdowns)
+              runtime.requestToolboxExtensionsUpdate()
+            },
+          },
+          {
+            opcode: "dropdown1",
+            blockType: "reporter",
+            text: "[CUSTOM_dropdown]",
+            arguments: {
+              CUSTOM_dropdown: {
+                    type: "string",
+                    menu: "CUSTOM_dropdown",
+                },
+            },
+          },
+        ],
         menus: {
           CUSTOM_dropdown: {
             acceptReporters: true,
