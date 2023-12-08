@@ -25,6 +25,7 @@ class variablePlus {
                             menu: "CUSTOM_dropdown",
                         },
                     },
+                    func: 'return',
                   },
                 )
                 console.log(newDropdowns)
@@ -50,6 +51,9 @@ class variablePlus {
           }
         },
       };
+    }
+    return(args) {
+      return args.CUSTOM_dropdown
     }
   }
   
