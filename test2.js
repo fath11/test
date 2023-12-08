@@ -1,26 +1,27 @@
 class variablePlus {
   constructor(runtime) {
     this.runtime = runtime
-
-    const blocks = [{
-      blockType: "button",
-      text: "New dropdown",
-      onClick: () => { this.newDropdown() },
-    },
-    {
-      opcode: "dropdown1",
-      blockType: "reporter",
-      text: "[CUSTOM_dropdown]",
-      arguments: {
-        CUSTOM_dropdown: {
-              type: "string",
-              menu: "CUSTOM_dropdown",
-          },
-      },
-    },]
-    
-    const newDropdowns = []
   }
+
+  blocks = [{
+    blockType: "button",
+    text: "New dropdown",
+    onClick: () => { this.newDropdown() },
+  },
+  {
+    opcode: "dropdown1",
+    blockType: "reporter",
+    text: "[CUSTOM_dropdown]",
+    arguments: {
+      CUSTOM_dropdown: {
+            type: "string",
+            menu: "CUSTOM_dropdown",
+        },
+    },
+  },]
+  
+  newDropdowns = []
+
     getInfo() {
       return {
         id: 'variablePlus',
