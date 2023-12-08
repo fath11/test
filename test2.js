@@ -1,7 +1,7 @@
 const blocks = [{
   blockType: "button",
   text: "New dropdown",
-  onClick: () => { this.newDropdown() },
+  onClick: () => { newDropdown() },
 },
 {
   opcode: "dropdown1",
@@ -16,6 +16,23 @@ const blocks = [{
 },]
 
 const newDropdowns = []
+function newDropdown() {
+  newDropdowns.push(
+    {
+      opcode: "dropdown" + Math.random(),
+      blockType: "reporter",
+      text: "[CUSTOM_dropdown]",
+      arguments: {
+        CUSTOM_dropdown: {
+              type: "string",
+              menu: "CUSTOM_dropdown",
+          },
+      },
+    },
+  )
+  console.log(newDropdowns)
+  runtime.requestToolboxExtensionsUpdate()
+}
 
 class variablePlus {
   constructor(runtime) {
@@ -31,23 +48,6 @@ class variablePlus {
             acceptReporters: true,
             items: ['New item', 'example item 1']
           }
-        },
-        newDropdown() {
-          newDropdowns.push(
-            {
-              opcode: "dropdown" + Math.random(),
-              blockType: "reporter",
-              text: "[CUSTOM_dropdown]",
-              arguments: {
-                CUSTOM_dropdown: {
-                      type: "string",
-                      menu: "CUSTOM_dropdown",
-                  },
-              },
-            },
-          )
-          console.log(newDropdowns)
-          runtime.requestToolboxExtensionsUpdate()
         }
       };
     }
