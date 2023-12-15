@@ -10,9 +10,6 @@ class CommentBlocks {
     this._formatMessage = runtime.getFormatMessage({
       'zh-cn': {
         'CmntExt.extensionName': "评论区",
-        'CmntExt.descriptionProjectName': '👑 项目名称：[NAME]',
-        'CmntExt.descriptionDescription': '👉项目描述：[DESCRIPTION]',
-        'CmntExt.descriptionCredit': '👉 👉 致谢：[NAME]',
         'CmntExt.commentHat': '[COMMENT]',
         'CmntExt.commentCommand': '[COMMENT]',
         'CmntExt.commentCap': '[COMMENT]',
@@ -28,9 +25,6 @@ class CommentBlocks {
   
       en: {
         'CmntExt.extensionName': "Comment blocks",
-        'CmntExt.descriptionProjectName': '👑 Project name: [NAME] \n hello',
-        'CmntExt.descriptionDescription': '👉 Project description: [DESCRIPTION]',
-        'CmntExt.descriptionCredit': '👉 👉 Credits to: [NAME]',
         'CmntExt.commentHat': '[COMMENT]',
         'CmntExt.commentCommand': '[COMMENT]',
         'CmntExt.commentCap': '[COMMENT]',
@@ -65,43 +59,6 @@ class CommentBlocks {
         blocks: [
           "---" + "✨ Made by LilyMakesThings",
           "---" + "Changed a little bit by Fath11",
-          "---" + "📝 Description",
-          {
-            opcode: "descriptionProjectName",
-            blockType: Scratch.BlockType.HAT,
-            text: this.formatMessage('CmntExt.descriptionProjectName'),
-            isEdgeActivated: false,
-            arguments: {
-              NAME: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "Whats the name of this project?",
-              },
-            },
-          },
-          {
-            opcode: "descriptionDescription",
-            blockType: Scratch.BlockType.COMMAND,
-            text: this.formatMessage('CmntExt.descriptionDescription'),
-            isEdgeActivated: false,
-            arguments: {
-              DESCRIPTION: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "Whats this project about?",
-              },
-            },
-          },
-          {
-            opcode: "descriptionCredit",
-            blockType: Scratch.BlockType.COMMAND,
-            text: this.formatMessage('CmntExt.descriptionCredit'),
-            isEdgeActivated: false,
-            arguments: {
-              NAME: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "Who do you want to thank?",
-              },
-            },
-          },
           "---" + "🎩 Hats",
           {
             opcode: "commentHat",
@@ -114,6 +71,7 @@ class CommentBlocks {
                 defaultValue: "comment",
               },
             },
+            func: 'noop',
           },
           "---" + "📚 Stacks",
           {
@@ -126,18 +84,7 @@ class CommentBlocks {
                 defaultValue: "comment",
               },
             },
-          },
-          {
-            opcode: "commentCap",
-            blockType: Scratch.BlockType.COMMAND,
-            text: this.formatMessage('CmntExt.commentCap'),
-            isTerminal: true,
-            arguments: {
-              COMMENT: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "comment",
-              },
-            },
+            func: 'return',
           },
           "---" + "📲 Reporters",
           {
@@ -154,6 +101,7 @@ class CommentBlocks {
                 defaultValue: "",
               },
             },
+            func: 'return',
           },
           {
             opcode: "commentReporter2",
@@ -169,6 +117,7 @@ class CommentBlocks {
                 defaultValue: "",
               },
             },
+            func: 'return',
           },
           {
             opcode: "commentReporter3",
@@ -180,6 +129,7 @@ class CommentBlocks {
                 defaultValue: "comment",
               },
             },
+            func: 'return',
           },
           "---" + "🫳 Booleans",
           {
@@ -195,6 +145,7 @@ class CommentBlocks {
                 type: Scratch.ArgumentType.BOOLEAN,
               },
             },
+            func: 'returnBool',
           },
           {
             opcode: "commentBoolean2",
@@ -209,6 +160,7 @@ class CommentBlocks {
                 type: Scratch.ArgumentType.BOOLEAN,
               },
             },
+            func: 'returnBool',
           },
           {
             opcode: "commentBoolean3",
@@ -223,6 +175,7 @@ class CommentBlocks {
                 type: Scratch.ArgumentType.BOOLEAN,
               },
             },
+            func: 'returnBool',
           },
           "---" + "📂 C blocks",
         {
@@ -238,7 +191,7 @@ class CommentBlocks {
               defaultValue: "comment",
             },
           },
-          func: 'commentConditional',
+          func: 'startBranch',
         },
           {
             opcode: "commentLoop",
@@ -254,48 +207,29 @@ class CommentBlocks {
                 type: Scratch.ArgumentType.BOOLEAN,
               },
             },
+            func: 'startBranch',
           },
         ],
       };
     }
   
-    commentHat() {
+    noop() {
       //no-op
     }
   
-    commentCommand() {
-      //no-op
+    return(args) {
+      if (args.INPUT !== "") {
+        return args.INPUT;
+      } else {
+        return args.COMMENT
+      }
     }
   
-    commentReporter(args) {
-      return args.INPUT;
+    returnBool(args) {
+      return args.INPUT || args.COMMENT || false;
     }
   
-    commentReporter2(args) {
-      return args.INPUT;
-    }
-  
-    commentReporter3(args) {
-      return args.INPUT;
-    }
-  
-    commentBoolean(args) {
-      return args.INPUT || false;
-    }
-  
-    commentBoolean2(args) {
-      return args.INPUT || false;
-    }
-  
-    commentBoolean3(args) {
-      return false;
-    }
-  
-    commentConditional(_, util) {
-      util.startBranch(1, false);
-    }
-  
-    commentLoop(_, util) {
+    startBranch(_, util) {
       util.startBranch(1, false);
     }
   }
