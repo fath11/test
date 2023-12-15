@@ -28,7 +28,7 @@ class CommentBlocks {
   
       en: {
         'CmntExt.extensionName': "Comment blocks",
-        'CmntExt.descriptionProjectName': '👑 Project name: [NAME]',
+        'CmntExt.descriptionProjectName': '👑 Project name: [NAME] \n hello',
         'CmntExt.descriptionDescription': '👉 Project description: [DESCRIPTION]',
         'CmntExt.descriptionCredit': '👉 👉 Credits to: [NAME]',
         'CmntExt.commentHat': '[COMMENT]',
