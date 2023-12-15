@@ -226,7 +226,11 @@ class CommentBlocks {
     }
   
     returnBool(args) {
-      return args.INPUT || false || args.COMMENT;
+      if (args.INPUT == true || false) {
+        return args.INPUT == true || false;
+      } else{
+        return args.COMMENT !== "" || false;
+      }
     }
   
     startBranch(_, util) {
