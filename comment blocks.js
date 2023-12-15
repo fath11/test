@@ -301,7 +301,7 @@ class CommentBlocks {
       description: 'CmntExt.description',
       extensionId: 'commentblocks',
       iconURL: '/banners/CommentBlocks.png',
-      insetIconURL: '/assets/lilyComment.png ',
+      insetIconURL: '/assets/lilyComment.png',
       featured: true,
       disabled: false,
       collaborator: 'Lily@TW',
