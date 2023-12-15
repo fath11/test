@@ -129,7 +129,7 @@ class CommentBlocks {
                 defaultValue: "comment",
               },
             },
-            func: 'return',
+            func: 'returnComment',
           },
           "---" + "🫳 Booleans",
           {
@@ -171,11 +171,8 @@ class CommentBlocks {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: "comment",
               },
-              INPUT: {
-                type: Scratch.ArgumentType.BOOLEAN,
-              },
             },
-            func: 'returnBool',
+            func: 'returnCommentBool',
           },
           "---" + "📂 C blocks",
         {
@@ -203,9 +200,6 @@ class CommentBlocks {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue: "comment",
               },
-              INPUT: {
-                type: Scratch.ArgumentType.BOOLEAN,
-              },
             },
             func: 'startBranch',
           },
@@ -223,6 +217,18 @@ class CommentBlocks {
   
     returnBool(args) {
       return args.INPUT == true || false;
+    }
+
+    returnComment(args) {
+      return args.COMMENT;
+    }
+
+    returnCommentBool(args) {
+      if (args.COMMENT !== "") {
+        return true
+      } else {
+        return false
+      }
     }
   
     startBranch(_, util) {
