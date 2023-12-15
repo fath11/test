@@ -1,3 +1,6 @@
+import cover from './banners/CommentBlocks.png'
+import icon from './assets/lilyComment.png'
+
 class CommentBlocks {
     constructor(runtime) {
     this.runtime = runtime
@@ -300,8 +303,8 @@ class CommentBlocks {
       name: 'CmntExt.extensionName',
       description: 'CmntExt.description',
       extensionId: 'commentblocks',
-      iconURL: require('./banners/CommentBlocks.png'),
-      insetIconURL: require('./assets/lilyComment.png'),
+      iconURL: cover,
+      insetIconURL: icon,
       featured: true,
       disabled: false,
       collaborator: 'Lily@TW',
