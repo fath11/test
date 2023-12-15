@@ -218,19 +218,11 @@ class CommentBlocks {
     }
   
     return(args) {
-      if (args.INPUT !== "") {
-        return args.INPUT;
-      } else {
-        return args.COMMENT
-      }
+      return args.INPUT;
     }
   
     returnBool(args) {
-      if (args.INPUT == true || false) {
-        return args.INPUT == true || false;
-      } else{
-        return args.COMMENT !== "" || false;
-      }
+      return args.INPUT == true || false;
     }
   
     startBranch(_, util) {
