@@ -226,7 +226,7 @@ class CommentBlocks {
     }
   
     returnBool(args) {
-      return args.INPUT || args.COMMENT || false;
+      return args.INPUT || false || args.COMMENT;
     }
   
     startBranch(_, util) {
