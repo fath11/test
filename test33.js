@@ -119,7 +119,8 @@ class CommentBlocks {
         ],
       };
     }
-    broadcastToClone({ VALUE, MENU, MSG, data }, util) {
+    broadcastToClone({ MSG, data }, util) {
+      let senderID = util.target.id
         util.startHatsWithParams(
           'witCat.dollyPro_receiveMyBroadcast',
           {
