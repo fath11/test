@@ -4,32 +4,10 @@ class CommentBlocks {
     this._formatMessage = runtime.getFormatMessage({
       'zh-cn': {
         'CmntExt.extensionName': "评论区",
-        'CmntExt.commentHat': '[COMMENT]',
-        'CmntExt.commentCommand': '[COMMENT]',
-        'CmntExt.commentCap': '[COMMENT]',
-        'CmntExt.commentReporter': '[INPUT] [COMMENT]',
-        'CmntExt.commentReporter2': '[COMMENT] [INPUT]',
-        'CmntExt.commentReporter3': '[COMMENT]',
-        'CmntExt.commentBoolean': '[INPUT] [COMMENT]',
-        'CmntExt.commentBoolean2': '[COMMENT] [INPUT]',
-        'CmntExt.commentBoolean3': '[COMMENT]',
-        'CmntExt.commentConditional': '[COMMENT]',
-        'CmntExt.commentLoop': '[COMMENT]',
       },
   
       en: {
         'CmntExt.extensionName': "Comment blocks",
-        'CmntExt.commentHat': '[COMMENT]',
-        'CmntExt.commentCommand': '[COMMENT]',
-        'CmntExt.commentCap': '[COMMENT]',
-        'CmntExt.commentReporter': '[INPUT] [COMMENT]',
-        'CmntExt.commentReporter2': '[COMMENT] [INPUT]',
-        'CmntExt.commentReporter3': '[COMMENT]',
-        'CmntExt.commentBoolean': '[INPUT] [COMMENT]',
-        'CmntExt.commentBoolean2': '[COMMENT] [INPUT]',
-        'CmntExt.commentBoolean3': '[COMMENT]',
-        'CmntExt.commentConditional': '[COMMENT]',
-        'CmntExt.commentLoop': '[COMMENT]',
       },
     })
   }
@@ -69,6 +47,22 @@ class CommentBlocks {
             },
           },
           {
+            opcode: 'broadcastReporter',
+            blockType: Scratch.BlockType.REPORTER,
+            filter: [Scratch.TargetType.SPRITE],
+            text: 'send private message[MSG] with data[data]',
+            arguments: {
+              MSG: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 'message 1',
+              },
+              data: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 'data',
+              },
+            },
+          },
+          {
             opcode: 'receiveMyBroadcast',
             blockType: Scratch.BlockType.HAT,
             isEdgeActivated: false,
@@ -81,6 +75,19 @@ class CommentBlocks {
               },
               data: {
                 type: 'ccw_hat_parameter',
+              },
+            },
+          },
+          {
+            opcode: 'returnData',
+            blockType: Scratch.BlockType.COMMAND,
+            isTerminal: true,
+            filter: [Scratch.TargetType.SPRITE],
+            text: 'Return [data]',
+            arguments: {
+              data: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 'data',
               },
             },
           },
@@ -97,10 +104,26 @@ class CommentBlocks {
           },
         );
     }
+
+    broadcastReporter({ MSG, data }, util) {
+      return util.startHatsWithParams(
+        'commentblocks_receiveMyBroadcast',
+        {
+          parameters: { data },
+          // 根据hat中的 TEXT 输入，过滤hat积木
+          fields: { TEXT: MSG },
+        },
+      );
+  }
   
   
-    receiveMyBroadcast() {
-      return true;
+    receiveMyBroadcast({ MSG, data }) {
+      var DATA = data
+      return DATA;
+    }
+
+    returnData({data}) {
+      DATA = data
     }
   }
   
