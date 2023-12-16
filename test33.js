@@ -76,7 +76,7 @@ class CommentBlocks {
         color1: "#191e25",
         color2: "#191e25",
         color3: "#191919",
-        blockIconURI: icon,
+        //blockIconURI: icon,
         blocks: [
           "---" + "✨ Made by LilyMakesThings",
           "---" + "Changed a little bit by Fath11",
