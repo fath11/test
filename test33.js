@@ -83,18 +83,10 @@ class CommentBlocks {
           "---" + "🎩 Hats",
           {
             opcode: 'broadcastToClone',
-            blockType: BlockType.COMMAND,
+            blockType: Scratch.BlockType.COMMAND,
             filter: [TargetType.SPRITE],
-            text: 'send private message[MSG] to clone[MENU][VALUE], with data[data]',
+            text: 'send private message[MSG] with data[data]',
             arguments: {
-              MENU: {
-                type: ArgumentType.STRING,
-                menu: 'SPRITE_OR_GROUP_OR_ID_MENU',
-              },
-              VALUE: {
-                type: ArgumentType.STRING,
-                defaultValue: 'enemy',
-              },
               MSG: {
                 type: ArgumentType.STRING,
                 defaultValue: 'message 1',
@@ -107,7 +99,7 @@ class CommentBlocks {
           },
           {
             opcode: 'receiveMyBroadcast',
-            blockType: BlockType.HAT,
+            blockType: Scratch.BlockType.HAT,
             isEdgeActivated: false,
             shouldRestartExistingThreads: false,
             text: 'when I receive private message[MSG] for me. data=[data], senderID=[senderID]',
