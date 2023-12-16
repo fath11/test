@@ -1,30 +1,3 @@
-const BlockType = {
-  BOOLEAN: 'Boolean',
-  BUTTON: 'button',
-  COMMAND: 'command',
-  CONDITIONAL: 'conditional',
-  EVENT: 'event',
-  HAT: 'hat',
-  LOOP: 'loop',
-  REPORTER: 'reporter',
-};
-
-const ArgumentType = {
-  ANGLE: 'angle',
-  BOOLEAN: 'Boolean',
-  COLOR: 'color',
-  NUMBER: 'number',
-  STRING: 'string',
-  MATRIX: 'matrix',
-  NOTE: 'note',
-  IMAGE: 'image',
-};
-
-const TargetType = {
-  STAGE: 'stage',
-  SPRITE: 'sprite',
-};
-
 class CommentBlocks {
     constructor(runtime) {
     this.runtime = runtime
@@ -73,9 +46,7 @@ class CommentBlocks {
       return {
         id: "commentblocks",
         name: this.formatMessage('CmntExt.extensionName'),
-        color1: "#191e25",
-        color2: "#191e25",
-        color3: "#191919",
+        color1: '#FA8D0D',
         //blockIconURI: icon,
         blocks: [
           "---" + "✨ Made by LilyMakesThings",
@@ -84,7 +55,7 @@ class CommentBlocks {
           {
             opcode: 'broadcastToClone',
             blockType: Scratch.BlockType.COMMAND,
-            filter: [TargetType.SPRITE],
+            filter: [Scratch.TargetType.SPRITE],
             text: 'send private message[MSG] with data[data]',
             arguments: {
               MSG: {
