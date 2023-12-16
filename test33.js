@@ -25,7 +25,6 @@ const TargetType = {
   SPRITE: 'sprite',
 };
 
-import Cast from './cast.js';
 class CommentBlocks {
     constructor(runtime) {
     this.runtime = runtime
@@ -94,15 +93,15 @@ class CommentBlocks {
               },
               VALUE: {
                 type: ArgumentType.STRING,
-                defaultValue: this.formatMessage('defaultValue.enemy'),
+                defaultValue: 'enemy',
               },
               MSG: {
                 type: ArgumentType.STRING,
-                defaultValue: this.formatMessage('defaultValue.MSGName'),
+                defaultValue: 'message 1',
               },
               data: {
                 type: ArgumentType.STRING,
-                defaultValue: this.formatMessage('defaultValue.MSGInfo'),
+                defaultValue: 'data',
               },
             },
           },
@@ -115,7 +114,7 @@ class CommentBlocks {
             arguments: {
               MSG: {
                 type: ArgumentType.STRING,
-                defaultValue: this.formatMessage('defaultValue.MSGName'),
+                defaultValue: 'message 1',
               },
               data: {
                 type: 'ccw_hat_parameter',
@@ -134,7 +133,7 @@ class CommentBlocks {
           {
             parameters: { data, senderID },
             // 根据hat中的 TEXT 输入，过滤hat积木
-            fields: { TEXT: Cast.toString(MSG) },
+            fields: { TEXT: MSG },
           },
           target
         );
