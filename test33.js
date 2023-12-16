@@ -59,11 +59,11 @@ class CommentBlocks {
             text: 'send private message[MSG] with data[data]',
             arguments: {
               MSG: {
-                type: ArgumentType.STRING,
+                type: Scratch.ArgumentType.STRING,
                 defaultValue: 'message 1',
               },
               data: {
-                type: ArgumentType.STRING,
+                type: Scratch.ArgumentType.STRING,
                 defaultValue: 'data',
               },
             },
@@ -76,7 +76,7 @@ class CommentBlocks {
             text: 'when I receive private message[MSG] for me. data=[data]',
             arguments: {
               MSG: {
-                type: ArgumentType.STRING,
+                type: Scratch.ArgumentType.STRING,
                 defaultValue: 'message 1',
               },
               data: {
