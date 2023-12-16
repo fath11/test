@@ -111,9 +111,6 @@ class CommentBlocks {
               data: {
                 type: 'ccw_hat_parameter',
               },
-              senderID: {
-                type: 'ccw_hat_parameter',
-              },
             },
           },
         ],
@@ -124,7 +121,7 @@ class CommentBlocks {
         util.startHatsWithParams(
           'witCat.dollyPro_receiveMyBroadcast',
           {
-            parameters: { data, senderID },
+            parameters: { data },
             // 根据hat中的 TEXT 输入，过滤hat积木
             fields: { TEXT: MSG },
           },
