@@ -118,7 +118,7 @@ class CommentBlocks {
     }
     broadcastToClone({ MSG, data }, util) {
         util.startHatsWithParams(
-          'witCat.dollyPro_receiveMyBroadcast',
+          'commentblocks_receiveMyBroadcast',
           {
             parameters: { data },
             // 根据hat中的 TEXT 输入，过滤hat积木
