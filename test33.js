@@ -124,7 +124,6 @@ class CommentBlocks {
             // 根据hat中的 TEXT 输入，过滤hat积木
             fields: { TEXT: MSG },
           },
-          target
         );
     }
   
