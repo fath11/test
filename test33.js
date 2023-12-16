@@ -102,7 +102,7 @@ class CommentBlocks {
             blockType: Scratch.BlockType.HAT,
             isEdgeActivated: false,
             shouldRestartExistingThreads: false,
-            text: 'when I receive private message[MSG] for me. data=[data], senderID=[senderID]',
+            text: 'when I receive private message[MSG] for me. data=[data]',
             arguments: {
               MSG: {
                 type: ArgumentType.STRING,
@@ -117,7 +117,6 @@ class CommentBlocks {
       };
     }
     broadcastToClone({ MSG, data }, util) {
-      let senderID = util.target.id
         util.startHatsWithParams(
           'witCat.dollyPro_receiveMyBroadcast',
           {
