@@ -29,14 +29,14 @@ function rotatePoint(px, py, cx, cy, theta) {
 }
 
 
-class motionSquared {
+class ReMotion {
   constructor(runtime){
     this.runtime = runtime
   }
     getInfo() {
       return {
-        id: 'motionsquared',
-        name: 'Motion^2',
+        id: 'remotion',
+        name: 'ReMotion',
         color1: '#4c97ff',
         color2: '#2a528a',
         color3: '#4280d7',
@@ -489,23 +489,23 @@ class motionSquared {
 }
 
 window.tempExt = {
-  Extension: motionSquared,
+  Extension: ReMotion,
   info: {
-      name: 'motionsquared.Name',
-      description: 'motionsquared.Description',
-      extensionId: 'motionsquared',
+      name: 'remotion.Name',
+      description: 'remotion.Description',
+      extensionId: 'remotion',
       iconURL: 'https://fath11.github.io/test/banners/Motion.png',
       // insetIconURL: 'cover.svg',
       collaborator: 'Fath11@Cocrea'
   },
   l10n: {
       'zh-cn': {
-          'motionsquared.Name':'控制台',
-          'motionsquared.Description':'用于控制和操作浏览器内置的JavaScript控制台'
+          'remotion.Name':'控制台',
+          'remotion.Description':'用于控制和操作浏览器内置的JavaScript控制台'
       },
       en: {
-          'motionsquared.Name':'Motion squared',
-          'motionsquared.Description': "More blocks for controlling sprite's motion!"
+          'remotion.Name':'Motion squared',
+          'remotion.Description': "More blocks for controlling sprite's motion!"
       }
   },
 }
