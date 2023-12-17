@@ -494,9 +494,9 @@ window.tempExt = {
       name: 'motionsquared.Name',
       description: 'motionsquared.Description',
       extensionId: 'motionsquared',
-      // iconURL: 'cover.svg',
+      iconURL: 'https://fath11.github.io/test/banners/Motion.png',
       // insetIconURL: 'cover.svg',
-      collaborator: 'Fath11@Gandi'
+      collaborator: 'Fath11@Cocrea'
   },
   l10n: {
       'zh-cn': {
