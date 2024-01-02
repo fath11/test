@@ -97,6 +97,7 @@ class GamepadExtension {
     this._formatMessage = runtime.getFormatMessage({
       "zh-cn": {
         "Gamepad.Gamepad": "Gamepad",
+        "gamepad [pad] connected?": "游戏手柄 [pad] 已连接?",
         "get [d] of pad [i]": "获取手柄 [i] 的 [d]",
         "button [b] on pad [i] pressed?": "按钮 [b] 在游戏手柄 [i] 上被按下",
         "value of button [b] on pad [i]": "游戏手柄 [i] 上按钮 [b] 的值",
@@ -137,6 +138,7 @@ class GamepadExtension {
       },
       en: {
         "Gamepad.Gamepad": "Gamepad",
+        "gamepad [pad] connected?": "gamepad [pad] connected?",
         "get [d] of pad [i]": "get [d] of pad [i]",
         "button [b] on pad [i] pressed?": "button [b] on pad [i] pressed?",
         "value of button [b] on pad [i]": "value of button [b] on pad [i]",
@@ -198,7 +200,7 @@ class GamepadExtension {
         {
           opcode: "gamepadConnected",
           blockType: Scratch.BlockType.BOOLEAN,
-          text: "gamepad [pad] connected?",
+          text: this.formatMessage("gamepad [pad] connected?"),
           arguments: {
             pad: {
               type: Scratch.ArgumentType.NUMBER,
