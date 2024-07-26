@@ -1,0 +1,60 @@
+/**
+ * @name BetterGandi
+ * @author Cathy Silva
+ * @version 1.0.0
+ * @description Customizable theme for Gandi.
+ */
+
+/* Credits to Zerthox for making the original theme. */
+/* Credits to the ClearVision team for making the base package which I just changed the :root variables of so I dont get reucrring nightmares. */
+
+/* IMPORT CSS */
+@import url(https://clearvision.github.io/ClearVision-v6/main.css);
+@import url(https://fonts.googleapis.com/css2?family=Electrolize&display=swap);
+
+/* SETTINGS */
+:root {
+  /* Level 1 background information, for example top menu bar and left navigation bar */
+  /* Level 2 background information, for example the stage and block palatte */
+  --gui-theme-secondary: #3b414d;
+  /* Level 3 background information, for example codespace, extension information display */
+  --gui-theme-tertiary: #252930;
+  /* Used to add sprite, background buttons and parts of modal body background color */
+  --gui-theme-quinary: #58606e;
+
+  /* stage header control color */
+  --gui-control-stop: #ee6a5f;
+  --gui-control-pause: #f4be50;
+
+  /* list item active color */
+  --gui-item-active-green: #5fc454;
+  --gui-item-active-green-transparent: rgba(95, 196, 84, 0.6);
+  --gui-item-active: #2d8cff;
+  /* list item active color */
+  --gui-item-active-transparent: rgba(45, 140, 255, 0.6);
+  /* list item hover color */
+  --gui-item-hover: rgba(45, 140, 255, 0.2);
+  /* menu background color: top and bottom words and menu at upper right corner*/
+  --gui-menu-bg-color: rgb(75, 84, 100, 0.6);
+  --gui-disabled: #c4c4c4;
+
+  /* divider color */
+  --gui-divider-color: #58687a;
+
+  /* sprite information input*/
+  --gui-sprite-info-input-color: #6e727a;
+  --gui-text-primary: white;
+  --gui-blockly-flyout-color: #1d2634;
+  --gui-blockly-bg-color: #101928;
+  --gui-ui-modal-overlay: hsl(0deg 0% 0% / 30%);
+  --gui-ui-white-transparent: hsla(0, 100%, 100%, 0.25);
+  --gui-black-transparent: hsla(0, 0%, 50%, 0.15);
+
+  --gui-vertical-bar-width: 72px;
+  --gui-menu-bar-height: 60px;
+  --gui-control-button-height: 24px;
+  --gui-control-button-width: 48px;
+  --gui-stage-selector-width: 120px;
+  --gui-backdrop-blur: 15px;
+  --gui-sprite-list-header-height: 35px;
+}
