@@ -16,7 +16,7 @@
 :root {
   /* Level 1 background information, for example top menu bar and left navigation bar */
   /* Level 2 background information, for example the stage and block palatte */
-  --gui-theme-secondary: #3b414d;
+  --gui-theme-secondary: #0000;
   /* Level 3 background information, for example codespace, extension information display */
   --gui-theme-tertiary: #252930;
   /* Used to add sprite, background buttons and parts of modal body background color */
