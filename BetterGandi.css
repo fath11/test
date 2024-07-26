@@ -6,7 +6,7 @@
  */
 
 /* Credits to Zerthox for making the original theme. */
-/* Credits to the ClearVision team for making the base package which I just changed the :root variables of so I dont get reucrring nightmares. */
+/* Credits to the ClearVision team for making the base package which I just changed the :root variables of so I don't get reucrring nightmares. */
 
 /* IMPORT CSS */
 @import url(https://clearvision.github.io/ClearVision-v6/main.css);
@@ -14,18 +14,17 @@
 
 /* SETTINGS */
 :root {
-  --main-color: #0000;
   /* Level 1 background information, for example top menu bar and left navigation bar */
   /* Level 2 background information, for example the stage and block palatte */
-  --gui-theme-secondary: #0000;
+  --gui-theme-secondary: #36476a;
   /* Level 3 background information, for example codespace, extension information display */
-  --gui-theme-tertiary: #252930;
+  --gui-theme-tertiary: #1a335f;
   /* Used to add sprite, background buttons and parts of modal body background color */
-  --gui-theme-quinary: #58606e;
+  --gui-theme-quinary: #343b46;
 
   /* stage header control color */
-  --gui-control-stop: #ee6a5f;
-  --gui-control-pause: #f4be50;
+  --gui-control-stop: #e2776d;
+  --gui-control-pause: #e9c171;
 
   /* list item active color */
   --gui-item-active-green: #5fc454;
